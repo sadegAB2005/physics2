@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    form label
+    {
+      margin-bottom: 10px;
+    }
+
+    form {
+      text-align: center;
+      background-color: rgb(189, 189, 189);
+      margin: 50px auto;
+      padding: 10px;
+      width: 20%;
+      max-width: 400px;
+      border-radius: 20px;
+    }
+
+    hr {
+      width: 75%;
+    }
+
+    @media only screen and (max-width: 600px) {
+      form {
+        width: 45%;
+      }
+    }
+    .options
+    {
+      display: inline;
+      width: 20px;
+
+    }
+    div
+    {
+      margin-right: 20px;
+      margin-bottom: 10px;
+    }
+    .one
+    {
+      margin-left: 27px;
+      margin-top: 10px;
+    }
+    .two
+    {
+      margin-right: 40px;
+    }
+    .three
+    {
+      margin-right: 19px;
+    }
+    .koko
+    {
+      margin-top: 15px;
+    }
+
+  </style>
+</head>
+<body>
+  <form action="/test" method="POST">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" minlength="5" maxlength="20" autofocus required placeholder="What do you want us to call you">
+    <hr>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" placeholder="********">
+    <hr>
+    <label for="mobile">Mobile:</label><br>
+    <input type="tel" id="mobile" name="mobile" placeholder="+20100 (234) 123">
+    <hr>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required placeholder="example@XXX.com">
+    <hr>
+    <label for="subject">Subject:</label><br>
+    <input type="text" id="subject" name="subject" placeholder="Why are you here?">
+    <br><br>
+    <input type="hidden" name="Token" value="b92f1fc2fce391ad7af633723afd3055">
+    <input type="submit" name="submitButton" value="Send Data">
+    <input type="reset" name="resetButton" value="Empty Form">
+    <br>
+
+    <div class="koko">
+    <label>Which of following Programming lang u know:</label><br>
+    </div>
+    <div class="one">
+    <input type="checkbox" id="skill1" name="skills" value="JavaScript">
+    <label class="options" for="skill1">JavaScript</label><br>
+  </div>
+  <div class="three">
+    <input type="checkbox" id="skill2" name="skills" value="Python">
+    <label class="options" for="skill2">Python</label><br>
+  </div>
+  <div class="two">
+    <input type="checkbox" id="skill3" name="skills" value="Java">
+    <label class="options" for="skill3">Java</label><br>
+  </div>
+  
+    <!-- Add more checkboxes as needed -->
+  
+  </form>
+</body>
+</html>
