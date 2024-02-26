@@ -37,4 +37,4 @@ def handle_form_submission():
 
     return render_template('html1.html')
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
