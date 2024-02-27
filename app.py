@@ -1,19 +1,19 @@
-import logging
-# test.py
-
-from flask import Flask, abort, render_template, request
-import csv
+import mysql.connector
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+# Configure MySQL database connection
+db_config = {
+    'host': 'sadegAB.mysql.pythonanywhere-services.com',
+    'user': 'sadegAB',
+    'password': '9>T-@7q_HMMhX%?',
+    'database': 'sadegAB$default',
+}
 
 @app.route('/')
 def index():
-    try:
-        logging.info('Rendering index page')
-        return render_template('html2.html', )#content=dynamic_content)
-    except Exception as e:
-        return str(e)
+    return render_template('html2.html')
 
 @app.route('/test', methods=['POST'])
 def handle_form_submission():
@@ -23,18 +23,27 @@ def handle_form_submission():
     email = request.form.get('email')
     subject = request.form.get('subject')
 
-    # Save form data to CSV file
-    with open('form_data.csv', 'a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow([username, password, mobile, email, subject])
+    try:
+        # Connect to the MySQL database
+        connection = mysql.connector.connect(**db_config)
+        cursor = connection.cursor()
 
-    # For testing purposes, let's just print the values
-    print(f"Username: {username}")
-    print(f"Password: {password}")
-    print(f"Mobile: {mobile}")
-    print(f"Email: {email}")
-    print(f"Subject: {subject}")
+        # Execute SQL query to insert form data into the database
+        query = "INSERT INTO UserData (username, password, mobile, email, subject) VALUES (%s, %s, %s, %s, %s)"
+        data = (username, password, mobile, email, subject)
+        cursor.execute(query, data)
 
-    return render_template('html1.html')
+        # Commit the transaction
+        connection.commit()
+
+        # Close database connection
+        cursor.close()
+        connection.close()
+
+        return render_template('html1.html')
+
+    except mysql.connector.Error as error:
+        return f"Error: {error}"
+
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=False,host='0.0.0.0', port=8001)
