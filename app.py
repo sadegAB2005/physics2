@@ -1,49 +1,41 @@
-import mysql.connector
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
+import csv
 
 app = Flask(__name__)
 
-# Configure MySQL database connection
-db_config = {
-    'host': 'sadegAB.mysql.pythonanywhere-services.com',
-    'user': 'sadegAB',
-    'password': '9>T-@7q_HMMhX%?',
-    'database': 'sadegAB$default',
-}
+def read_users_from_csv():
+    users = []
+    with open('users.csv', 'r', newline='') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            users.append(row)
+    return users
+
+def validate_user(username, password):
+    users = read_users_from_csv()
+    for user in users:
+        if user['username'] == username and user['password'] == password:
+            return True
+    return False
 
 @app.route('/')
 def index():
-    return render_template('html2.html')
+    return render_template('index.html')
 
-@app.route('/test', methods=['POST'])
-def handle_form_submission():
-    username = request.form.get('username')
-    password = request.form.get('password')
-    mobile = request.form.get('mobile')
-    email = request.form.get('email')
-    subject = request.form.get('subject')
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if validate_user(username, password):
+            return redirect(url_for('protected'))
+        else:
+            return render_template('login.html', message='Invalid username or password')
+    return render_template('login.html')
 
-    try:
-        # Connect to the MySQL database
-        connection = mysql.connector.connect(**db_config)
-        cursor = connection.cursor()
-
-        # Execute SQL query to insert form data into the database
-        query = "INSERT INTO UserData (username, password, mobile, email, subject) VALUES (%s, %s, %s, %s, %s)"
-        data = (username, password, mobile, email, subject)
-        cursor.execute(query, data)
-
-        # Commit the transaction
-        connection.commit()
-
-        # Close database connection
-        cursor.close()
-        connection.close()
-
-        return render_template('html1.html')
-
-    except mysql.connector.Error as error:
-        return f"Error: {error}"
+@app.route('/protected')
+def protected():
+    return 'You are logged in!'
 
 if __name__ == '__main__':
-    app.run(debug=False,host='0.0.0.0', port=8001)
+    app.run(debug=True)

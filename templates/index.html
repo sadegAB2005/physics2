@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .header{
+            background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url("{{ url_for('static', filename='eduford_img/banner.png') }}");
+        }
+        .cta{
+            background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("{{ url_for('static', filename='eduford_img/banner2.jpg') }}");
+        }
+    </style>
+    
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='/eduford_img/logo.png') }}"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('login') }}">login</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showmenu()"></i>
+        </nav>
+        
+        <div class="text-box">
+        <h1>Aboein House Management</h1>
+        <p>All Tasks and family events will be announced Here</p>
+        <a href="{{ url_for('login') }}" class="hero-btn">login</a>
+        
+        </div>
+
+    </section>
+
+
+    <!-------Course------->
+    
+
+    <section class="course">
+        <h1>Task You Have</h1>
+        <p>are sperated to three level priority.</p>
+        <div class="row">
+            <div class="course-col"><h3>Daily </h3><p>Includes thing Daily Used will be already on ur tasks Page check them daily ,Completing them daily gives u Strike Score.</p></div>
+            <div class="course-col"><h3>Necessity  </h3><p>Task Here are Usually Needs car ,Or car based Tasks such as grocery, Medicines or Trips,they will be sent to ur tasks by the Admin or the Moderator</p></div>
+            <div class="course-col"><h3>Event</h3><p>Task With Event tag are things Happen suddenly and will go to the nearest member to the situation and gives high credits,such as visitors or crucial moments .</p></div>
+        </div>
+    
+    
+    </section>
+
+    <!-----campus----->
+    <section class="campus">
+        <h1>Aboein Campus </h1>
+        <p>Aboein Campus is based in two main places.</p>
+
+        <div class="row">
+            <div class="campus-col">
+                <img src="{{ url_for('static', filename='eduford_img/london.png') }}">
+                <div class="layer"><h3>Aldahmani Apt.</h3></div>
+            </div>
+            <div class="campus-col">
+                <img src="{{ url_for('static', filename='eduford_img/newyork.png') }}">
+                <div class="layer"><h3 >Souq Al'joma</h3></div>
+            </div>
+        </div>
+        
+        
+        </div>
+    </section>
+
+    
+    </section>
+    <!------testimonials----->
+    <section class="testimonial">
+        <h1>what our Members says</h1>
+        <p>All these family member are legal and blood related Members.</p>
+        <div class="row">
+            <div class="testimonial-col">
+                <img src="{{ url_for('static', filename='/eduford_img/user1.jpg')}}" alt="">
+                <div>
+                    <p>
+                        this is Great start so we improve and manage our tasks with technology ,as a moderator i will keep improving and help this family .
+                    </p>
+                    <h3>Ramy Aboein</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+
+                </div>
+            </div>
+            <div class="testimonial-col">
+                <img src="{{ url_for('static', filename='/eduford_img/user2.jpg')}}" alt="">
+                <div>
+                    <p>
+                        As the developer for this website ,it will be great improvment and i hope to see more .
+                    </p>
+                    <h3>Sadeg Aboein</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!--------call to action -------->
+
+    <section class="cta">
+        <h1>Dont reach us if u Have question <br>Try to end your all tasks</h1>
+        <a href="" class="hero-btn">Contact US</a>
+    </section>
+     <!--------footer -------->
+
+     <section class="footer">
+        <h4>About Us</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>Quidem hic labore eos repudiandae. Officiis officia alias, reiciendis sequi nulla iste! Eum corporis iusto illum veritatis fuga sed incidunt suscipit! Eum.</p>
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-linkedin"></i>
+        </div>
+        <p>Made By <i class="fa fa-telegram"> Eng_sadeg</i></p>
+    
+    </section>
+    
+
+
+
+
+
+
+
+
+
+
+
+<!---------------JS for Toggle Menu ----------------------->
+<script>
+    var navLinks =document.getElementById("navLinks");
+
+    function showmenu(){
+        navLinks.style.right = "0";
+    }
+    function hideMenu(){
+        navLinks.style.right ="-200px";
+    }
+</script>
+    
+</body>
+</html>
